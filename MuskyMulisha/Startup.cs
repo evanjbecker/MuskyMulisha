@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MuskyMulisha.Services;
 
 namespace MuskyMulisha
 {
@@ -23,6 +24,7 @@ namespace MuskyMulisha
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddTransient<IMailService, SmtpMailService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
