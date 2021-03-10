@@ -13,7 +13,7 @@ namespace MuskyMulisha.Services
             Credentials = new NetworkCredential("bcker08@gmail.com", Environment.GetEnvironmentVariable("EMAIL_PASSWORD"));
         }
 
-        public NetworkCredential Credentials { get; set; }
+        public NetworkCredential Credentials { get; }
         
         public async Task<EmailStatus> SendAsync(EmailModel emailModel)
         {
@@ -28,6 +28,7 @@ namespace MuskyMulisha.Services
                     EnableSsl = true,
                     Credentials = Credentials
                 };
+                
                 var msg = new MailMessage
                 {
                     Body = $"User: {emailModel.FullName}\n\n" +
@@ -40,11 +41,12 @@ namespace MuskyMulisha.Services
                 //msg.To.Add("MuskyMulisha@gmail.com");
                 msg.To.Add("me@evanbecker.com");
                 await smtp.SendMailAsync(msg);
+                
                 return new EmailStatus
                 {
                     Status = ErrorStatus.Success,
                     Message = "Email sent successfully!"
-                };;
+                };
             }
             catch (Exception e)
             {
