@@ -95,8 +95,13 @@
                            
                            <!-- Home -->
                            <li class="nav-item g-mx-10--lg g-mx-15--xl @((ActivePage)ViewData["ActivePage"] == ActivePage.Rates ? "active" : string.Empty)">
-                              <a asp-page="/Rates" class="nav-link g-py-7 g-px-0">Rates</a>
+                             <a asp-page="/Rates" class="nav-link g-py-7 g-px-0">Rates</a>
                            </li>
+                           
+                          <!-- Home -->
+                          <li class="nav-item g-mx-10--lg g-mx-15--xl @((ActivePage)ViewData["ActivePage"] == ActivePage.Faq ? "active" : string.Empty)">
+                             <a asp-page="/Faq" class="nav-link g-py-7 g-px-0">FAQ</a>
+                          </li>
                            
                            <!-- Home -->
                            <li class="nav-item g-mx-10--lg g-mx-15--xl @((ActivePage)ViewData["ActivePage"] == ActivePage.Contact ? "active" : string.Empty)">

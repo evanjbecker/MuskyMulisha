@@ -5,6 +5,7 @@
         Home,
         About,
         Rates,
-        Contact
+        Contact,
+        Faq
     }
 }
