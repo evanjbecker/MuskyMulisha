@@ -116,7 +116,7 @@
               }
             }
           },
-          colors: [$this.data('circles-bg-color') || '#72c02c', $this.data('circles-fg-color') || '#eeeeee'],
+          colors: [$this.data('circles-bg-color') || '#e74b3c', $this.data('circles-fg-color') || '#eeeeee'],
           duration: $this.data('circles-duration') || 1000,
           wrpClass: self.config['wrpClass'],
           textClass: self.config['textClass'],
