@@ -2,11 +2,11 @@
 {
     public class EmailStatus
     {
-        public ErrorStatus Status { get; set; }
+        public EmailStatusEnum StatusEnum { get; set; }
         public string Message { get; set; }
     }
 
-    public enum ErrorStatus
+    public enum EmailStatusEnum
     {
         Error,
         Success

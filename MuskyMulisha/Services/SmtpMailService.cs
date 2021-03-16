@@ -8,54 +8,53 @@ namespace MuskyMulisha.Services
 {
     public class SmtpMailService : IMailService
     {
+        
+        private readonly NetworkCredential _credentials;
+        
         public SmtpMailService()
         {
-            Credentials = new NetworkCredential("bcker08@gmail.com", Environment.GetEnvironmentVariable("EMAIL_PASSWORD"));
+            _credentials = new NetworkCredential("bcker08@gmail.com", Environment.GetEnvironmentVariable("EMAIL_PASSWORD"));
         }
 
-        public NetworkCredential Credentials { get; }
-        
         public async Task<EmailStatus> SendAsync(EmailModel emailModel)
         {
             try
             {
-                using var smtp = new SmtpClient
+                using var smtpClient = new SmtpClient
                 {
                     Port = 587,
                     DeliveryMethod = SmtpDeliveryMethod.Network,
                     UseDefaultCredentials = false,
                     Host = "smtp.gmail.com",
                     EnableSsl = true,
-                    Credentials = Credentials
+                    Credentials = _credentials
                 };
                 
-                var msg = new MailMessage
+                var mailMessage = new MailMessage
                 {
-                    Body = $"User: {emailModel.FullName}\n\n" +
-                           $"Message: {emailModel.Message}\n\n" +
-                           $"PhoneNumber: {emailModel.PhoneNumber}\n\n" +
-                           $"Email Address: {emailModel.EmailAddress}",
-                    Subject = $"User {emailModel.FullName} has sent you an email.",
+                    Body = $"User: {emailModel.FullName ?? "<Name Not Provided>"}\n\n" +
+                           $"Message: {emailModel.Message ?? "<Message Not Provided>"}\n\n" +
+                           $"PhoneNumber: {emailModel.PhoneNumber ?? "<Phone Not Provided>"}\n\n" +
+                           $"Email Address: {emailModel.EmailAddress ?? "<Email Not Provided>"}",
+                    Subject = $"User {emailModel.FullName ?? "<Name Not Provided>"} has sent you an email.",
                     From = new MailAddress("noreply@MuskyMulisha.com")
                 };
                 //msg.To.Add("MuskyMulisha@gmail.com");
-                msg.To.Add("me@evanbecker.com");
-                await smtp.SendMailAsync(msg);
+                mailMessage.To.Add("me@evanbecker.com");
+                await smtpClient.SendMailAsync(mailMessage);
                 
                 return new EmailStatus
                 {
-                    Status = ErrorStatus.Success,
+                    StatusEnum = EmailStatusEnum.Success,
                     Message = "Email sent successfully!"
                 };
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return new EmailStatus
                 {
-                    Status = ErrorStatus.Error,
-                    Message = $"Email is not successful. Please manually email error to MuskyMulisha@gmail.com, " +
-                              $"and include the error message:\n" +
-                              $"{e.Message}"
+                    StatusEnum = EmailStatusEnum.Error,
+                    Message = "Email is not successful. Please manually email error to MuskyMulisha@gmail.com!"
                 };
             }
         }

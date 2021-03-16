@@ -28,9 +28,10 @@ namespace MuskyMulisha.Pages
 
         public void OnGet() { }
         
-        public async Task OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             EmailStatus = await _mailService.SendAsync(EmailModel);
+            return Page();
         }
     }
 }
