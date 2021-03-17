@@ -31,7 +31,7 @@ namespace MuskyMulisha
                     options.Listen(IPAddress.Any, 80);
                     options.Listen(IPAddress.Any, 443, listenOptions =>
                     {
-                        listenOptions.UseHttps("www.muskymulisha.com.pfx", Environment.GetEnvironmentVariable("MYSECRET_PASS"));
+                        listenOptions.UseHttps("muskymulisha.com.pfx", Environment.GetEnvironmentVariable("MYSECRET_PASS"));
                     });
                 })
                 .UseContentRoot(currentDirectory)
