@@ -6,29 +6,17 @@ body{
     color: #ebe8e1;
 }
 
-.cust-bg-dark-block {
-    background-color: rgba(0, 0, 0, 0.9) !important;
+.cust-bg-dark-block, .cust-bg-dark-block div {
+    background-color: rgb(30, 27, 27) !important;
     color: #ebe8e1;
 }
 
-.cust-bg-dark-block div{
-    background-color: rgba(0, 0, 0, 0.9) !important;
+.cust-bg-dark, .cust-bg-dark div, .cust-bg-dark section{
+    background-color: #111111 !important;
     color: #ebe8e1;
 }
 
-
-.cust-bg-dark{
-    background-color: #111  !important;
-    color: #ebe8e1;
-}
-
-.cust-bg-dark div{
-    background-color: #111  !important;
-    color: #ebe8e1;
-}
-
-.cust-bg-dark section{
-    background-color: #111  !important;
-    color: #ebe8e1;
+.cust-bg-offwhite {
+    background-color: #ebe8e1 !important;
 }
 
