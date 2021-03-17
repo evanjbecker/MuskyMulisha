@@ -28,8 +28,8 @@ namespace MuskyMulisha
             var host = new WebHostBuilder()
                 .UseKestrel(options =>
                 {
-                    options.Listen(IPAddress.Any, 80);
-                    options.Listen(IPAddress.Any, 443, listenOptions =>
+                    options.Listen(IPAddress.Any, 5000);
+                    options.Listen(IPAddress.Any, 5001, listenOptions =>
                     {
                         listenOptions.UseHttps("muskymulisha.com.pfx", Environment.GetEnvironmentVariable("MYSECRET_PASS"));
                     });
