@@ -35,8 +35,8 @@ namespace MuskyMulisha
                     });
                 })
                 .UseContentRoot(currentDirectory)
-                .UseUrls("http://*:80", "https://*:443")
-                .UseSetting("https_port", "443")
+                .UseUrls("http://*:5000", "https://*:5001")
+                .UseSetting("https_port", "5001")
                 .UseIISIntegration()
                 .UseStartup<Startup>()
                 .Build();
