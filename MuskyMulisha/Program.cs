@@ -25,6 +25,7 @@ namespace MuskyMulisha
                 .Build();
 #else
             var currentDirectory = Directory.GetCurrentDirectory();
+            Console.WriteLine(Environment.GetEnvironmentVariable("MYSECRET_PASS"));
             var host = new WebHostBuilder()
                 .UseKestrel(options =>
                 {
