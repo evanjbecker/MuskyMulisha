@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Server.Kestrel.Https;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -13,14 +15,30 @@ namespace MuskyMulisha
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
-        }
-
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+#if (DEBUG)
+            var host = new WebHostBuilder()
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
+                .UseStartup<Startup>()
+                .Build();
+#else
+            var host = new WebHostBuilder()
+                .UseKestrel(options =>
                 {
-                    webBuilder.UseStartup<Startup>();
-                });
+                    options.Listen(IPAddress.Any, 80);
+                    options.Listen(IPAddress.Any, 443, listenOptions =>
+                    {
+                        listenOptions.UseHttps("www.muskymulisha.com.pfx", Environment.GetEnvironmentVariable("MYSECRET_PASS"));
+                    });
+                })
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseUrls("http://*:80", "https://*:443")
+                .UseSetting("https_port", "443")
+                .UseIISIntegration()
+                .UseStartup<Startup>()
+                .Build();
+#endif
+        }
     }
 }
