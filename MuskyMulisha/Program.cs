@@ -16,7 +16,7 @@ namespace MuskyMulisha
     {
         public static void Main(string[] args)
         {
-#if (!DEBUG)
+#if (DEBUG)
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())

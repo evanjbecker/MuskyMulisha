@@ -2634,8 +2634,8 @@ body[class*="u-body--header-side"].u-body--header-side-opened .u-header__overlay
 }
 
 .u-btn-primary:hover, .u-btn-primary.active {
-  border-color: #8cd54a;
-  background-color: #8cd54a;
+  border-color: #e75e4f;
+  background-color: #e75e4f;
 }
 
 .u-btn-primary:hover, .u-btn-primary:focus, .u-btn-primary.active {
