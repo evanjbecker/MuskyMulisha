@@ -29,7 +29,7 @@ namespace MuskyMulisha.Services
                     EnableSsl = true,
                     Credentials = _credentials
                 };
-                
+
                 var mailMessage = new MailMessage
                 {
                     Body = $"User: {emailModel.FullName ?? "<Name Not Provided>"}\n\n" +
@@ -42,7 +42,7 @@ namespace MuskyMulisha.Services
                 //msg.To.Add("MuskyMulisha@gmail.com");
                 mailMessage.To.Add("me@evanbecker.com");
                 await smtpClient.SendMailAsync(mailMessage);
-                
+
                 return new EmailStatus
                 {
                     StatusEnum = EmailStatusEnum.Success,

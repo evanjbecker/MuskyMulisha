@@ -102,6 +102,8 @@ else if(Model.EmailStatus != null && Model.EmailStatus.StatusEnum == EmailStatus
           <input asp-for="EmailModel.PhoneNumber" class="form-control cust-bg-offwhite g-brd-gray-light-v4 g-brd-primary--focus rounded-3 g-py-13 g-px-15" type="tel" placeholder="+ (01) 222 33 44">
         </div>
 
+        <div class="g-recaptcha" data-sitekey="6Lfy1YQaAAAAAFuGuaMzPZdQ1LBGHAcjZYyEIHXO"></div>
+
       </div>
       <div class="col-md-7">
         <div class="g-mb-40">
@@ -117,3 +119,7 @@ else if(Model.EmailStatus != null && Model.EmailStatus.StatusEnum == EmailStatus
   </form>
 </section>
 <!-- End Contact Form -->
+
+@section Scripts {
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+}
