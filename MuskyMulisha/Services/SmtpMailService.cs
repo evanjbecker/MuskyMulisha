@@ -39,7 +39,7 @@ namespace MuskyMulisha.Services
                     Subject = $"User {emailModel.FullName ?? "<Name Not Provided>"} has sent you an email.",
                     From = new MailAddress("noreply@MuskyMulisha.com")
                 };
-                //msg.To.Add("MuskyMulisha@gmail.com");
+                mailMessage.To.Add("MuskyMulisha@gmail.com");
                 mailMessage.To.Add("me@evanbecker.com");
                 await smtpClient.SendMailAsync(mailMessage);
 
